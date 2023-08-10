@@ -49,7 +49,7 @@ erDiagram
 	int EMP_CODE PK
 	string EMP_FNAME
 	string EMP_LNAME
-	string CERT
+	string EMP_CERT_LIC
     }
 	
 	RESULTS {
@@ -63,6 +63,8 @@ erDiagram
 	
 	CHARTER_TRIP {
 	int CHARTER_NUM PK
+	int EMP_CODE FK
+	int CUS_ACCOUNT_NUM FK
 	int PILOT_CODE
 	time CHARTER_TRIP_LENGTH
 	money CHARTER_COSTS
@@ -72,9 +74,12 @@ erDiagram
 	CUSTOMER {
 	int CUS_ACCOUNT_NUM PK
 	money CUS_BALANCE_DUE
+	string CUS_REQ
 	}
     
 EMPLOYEES ||--o{ RESULTS : ""
+EMPLOYEES ||--o{ CHARTER_TRIP : ""
+CHARTER_TRIP }o--|| CUSTOMER : ""
 </div>
  
 <br>
