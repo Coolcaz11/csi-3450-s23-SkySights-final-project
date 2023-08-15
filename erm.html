@@ -58,7 +58,7 @@ erDiagram
 	CHARTER_TRIPS {
 	int CHA_NUM PK
 	int EMP_CODE FK
-	int CUS_ACCOUNT_NUM FK
+	int CUS_ACC_NUM FK
 	int PLANE_NUM FK
 	time CHA_START
 	time CHA_END
@@ -119,7 +119,7 @@ erDiagram
 	int REPORT_NUM PK
 	date REPORT_DATE
 	int CHA_NUM FK
-	string CHA_EXP_TOTAL
+	money CHA_EXP_TOTAL
 	money CHA_REV_TOTAL
 	}
 
@@ -130,7 +130,7 @@ erDiagram
 	time BILL_WAIT_TIME
 	int BILL_DISTANCE
 	string BILL_SPECIAL
-	string BILL_CREW_EXP
+	money BILL_CREW_EXP
 	money BILL_TOTAL
 	money BILL_PAID
 	money BILL_CHARGE_ACC
