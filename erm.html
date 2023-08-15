@@ -12,52 +12,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.css">
 
   <link rel="stylesheet" href="css/diag.css">
-  <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-
-scale = 1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheet.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
-    <h1>Sky Sights</h1>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">:)</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only ">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="aboutus.html ">About Us</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="charters.html">Charters</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="staffdirectory.html">Staff Directory</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="licenses.html">License + Certification</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="erm.html ">Project Model ERM</a>
-                </li>
-
-
-            </ul>
-
-        </div>
-    </nav>
 
 </head>
 <body>
@@ -95,39 +49,105 @@ erDiagram
 	int EMP_CODE PK
 	string EMP_FNAME
 	string EMP_LNAME
-	string EMP_CERT_LIC
+	string EMP_DOB
+	date EMP_START_DATE
+	int EMP_PHONE
+	string EMP_ADDRESS
     }
 	
-	RESULTS {
-	int TEST_CODE PK
-	int EMP_CODE FK
-	string TEST_DESC
-	date TEST_LAST_TEST_DONE
-	date TEST_NEXT_TEST_DUE
-	string TEST_RSLT
-    }
-	
-	CHARTER_TRIP {
-	int CHARTER_NUM PK
+	CHARTER_TRIPS {
+	int CHA_NUM PK
 	int EMP_CODE FK
 	int CUS_ACCOUNT_NUM FK
-	int PILOT_CODE
-	time CHARTER_TRIP_LENGTH
-	money CHARTER_COSTS
-	money CHARTER_REVENUE
+	int PLANE_NUM FK
+	time CHA_START
+	time CHA_END
+	string CHA_DEST
+	string CHA_PILOT
+	int CHA_CREW_TOT
+	int CHA_DISTANCE
+	int CHA_FUEL_CONS
     }
 	
-	CUSTOMER {
+	CUSTOMERS {
 	int CUS_ACC_NUM PK
 	string CUS_FNAME
 	string CUS_LNAME
-	money CUS_BALANCE_DUE
-	string CUS_REQ
+	money CUS_ACC_CHARGE 
+	string CUS_ACC_LIMIT
+	}
+
+	TESTS {
+	int TEST_CODE PK
+	string TEST_DESC
+	string TEST_FREQ
+	}
+
+	TEST_RESULTS {
+	int EMP_CODE PK
+	int TEST_CODE FK
+	date TEST_LAST
+	date TEST_NEXT
+	string TEST_PASS_NUM
+	}
+
+	CERT {
+	int CERT_CODE PK
+	string CERT_DESC
+	}
+
+	CERT_EARNED {
+	int EMP_CODE PK,FK
+	int CERT_CODE PK,FK
+	date DATE_EARNED
+	}
+
+	CREW {
+	int EMP_CODE PK,FK
+	int CHA_NUM PK,FK
+	string CREW_ASSIGNMENT
+	string CREW_EXP
+	}
+
+	PLANE {
+	int PLANE_NUM PK
+	string PLANE_TYPE
+	string PLANE_RATE
+	}
+
+	MONTHLY_REPORT {
+	int REPORT_NUM PK
+	date REPORT_DATE
+	int CHA_NUM FK
+	string CHA_EXP_TOTAL
+	money CHA_REV_TOTAL
+	}
+
+	BILL {
+	int CHA_NUM PK,FK
+	int CUS_ACC_NUM FK
+	string BILL_PLANE
+	time BILL_WAIT_TIME
+	int BILL_DISTANCE
+	string BILL_SPECIAL
+	string BILL_CREW_EXP
+	money BILL_TOTAL
+	money BILL_PAID
+	money BILL_CHARGE_ACC
 	}
     
-EMPLOYEES ||--o{ RESULTS : ""
-EMPLOYEES ||--o{ CHARTER_TRIP : ""
-CHARTER_TRIP }o--|| CUSTOMER : ""
+EMPLOYEES ||--o{ TEST_RESULTS : ""
+EMPLOYEES ||--o{ CREW : ""
+EMPLOYEES ||--o{ CERT_EARNED : ""
+CERT_EARNED }o--|| CERT : ""
+CREW }|--|| CHARTER_TRIPS : ""
+CHARTER_TRIPS }o--|| MONTHLY_REPORT : ""
+CHARTER_TRIPS }o--|| PLANE : ""
+CHARTER_TRIPS }o--|| CUSTOMERS : ""
+CHARTER_TRIPS ||--|| BILL : ""
+CUSTOMERS ||--o{ BILL : ""
+CHARTER_TRIPS }o--|| CUSTOMERS : ""
+TESTS ||--o{ TEST_RESULTS : ""
 </div>
  
 <br>
