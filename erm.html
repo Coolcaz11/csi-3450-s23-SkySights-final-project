@@ -74,7 +74,7 @@ erDiagram
 	string CUS_FNAME
 	string CUS_LNAME
 	money CUS_ACC_CHARGE 
-	string CUS_ACC_LIMIT
+	money CUS_ACC_LIMIT
 	}
 
 	TESTS {
@@ -117,8 +117,8 @@ erDiagram
 
 	MONTHLY_REPORT {
 	int REPORT_NUM PK
-	date REPORT_DATE
 	int CHA_NUM FK
+	date REPORT_DATE
 	money CHA_EXP_TOTAL
 	money CHA_REV_TOTAL
 	}
