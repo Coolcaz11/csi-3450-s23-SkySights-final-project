@@ -2,8 +2,6 @@ h1{
     text-align: center;
     
 }
-
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -31,6 +29,7 @@ header {
     color: #454372;
     text-align: center;
     padding-top: 100px;
+    font-family: 'Roboto', sans-serif;
     
 }
 .tab {
@@ -41,6 +40,7 @@ header {
 .tab h2 {
     margin-bottom: 20px;
     text-decoration: wavy;
+    font-family: 'Roboto', sans-serif;
 }
 .service {
     display: inline-block;
@@ -54,6 +54,7 @@ header {
 }
 .service h3 {
     margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
 }
 footer {
     background-color: #70877F;
@@ -81,4 +82,33 @@ p1 {
     flex-wrap: wrap;
     padding: 20px;
 
+}
+#search-container {
+    text-align: center;
+    padding: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#results {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.result-item {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.search label { 
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+  
 }
