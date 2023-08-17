@@ -59,14 +59,14 @@ erDiagram
 	int CHA_NUM PK
 	int CUS_ACC_NUM FK
 	int PLANE_NUM FK
-	time CHA_START
-	time CHA_END
+	datetime CHA_START
+	datetime CHA_END
+	datetime CHA_WAIT
 	string CHA_DEST
 	string CHA_PILOT
 	int CHA_CREW_TOT
 	int CHA_DISTANCE
 	int CHA_FUEL_CONS
-	money CHA_WAIT
     }
 	
 	CUSTOMERS {
@@ -112,7 +112,7 @@ erDiagram
 	PLANE {
 	int PLANE_NUM PK
 	string PLANE_TYPE
-	string PLANE_RATE
+	money PLANE_RATE
 	money PLANE_WAIT
 	money PLANE_COST
 	}
@@ -128,10 +128,10 @@ erDiagram
 	BILL {
 	int CHA_NUM PK,FK
 	int CUS_ACC_NUM FK
-	string BILL_PLANE
-	time BILL_WAIT_TIME
-	int BILL_DISTANCE
-	string BILL_SPECIAL
+	money BILL_PLANE
+	money BILL_WAIT_TIME
+	money BILL_DISTANCE
+	money BILL_SPECIAL
 	money BILL_CREW_EXP
 	money BILL_TOTAL
 	money BILL_PAID
