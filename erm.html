@@ -67,6 +67,7 @@ erDiagram
 	int CHA_CREW_TOT
 	int CHA_DISTANCE
 	int CHA_FUEL_CONS
+	money CHA_WAIT
     }
 	
 	CUSTOMERS {
@@ -86,9 +87,9 @@ erDiagram
 	TEST_RESULTS {
 	int EMP_CODE PK,FK
 	int TEST_CODE PK,FK
+	int TEST_PASS_NUM
 	date TEST_LAST
 	date TEST_NEXT
-	string TEST_PASS_NUM
 	}
 
 	CERT {
@@ -106,13 +107,15 @@ erDiagram
 	int EMP_CODE PK,FK
 	int CHA_NUM PK,FK
 	string CREW_ASSIGNMENT
-	string CREW_EXP
+	money CREW_EXP
 	}
 
 	PLANE {
 	int PLANE_NUM PK
 	string PLANE_TYPE
 	string PLANE_RATE
+	money PLANE_WAIT
+	money PLANE_COST
 	}
 
 	MONTHLY_REPORT {
