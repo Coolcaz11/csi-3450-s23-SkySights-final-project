@@ -133,11 +133,22 @@
 
     .form {
         background-color: #454372;
-        margin-left: 250px;
-        margin-right: 250px;
+        margin-left: 500px;
+        margin-right: 1000px;
         text-align: center;
+        align-content: center;
     }
-
+    p {
+        display: table-row;
+    }
     .form label {
         color: white;
+        display: table-cell;
+        font-size: medium;
+    }
+    input{
+        display: table-cell;
+    }
+    form{
+        display: table;
     }
