@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SkySights ERM</title>
+  <!-- 
+      Mermaid documentation:
+     https://mermaid.js.org/syntax/entityRelationshipDiagram.html
+  -->
+  
+  <!-- Load Mermaid CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.css">
+
+  <link rel="stylesheet" href="css/diag.css">
+
+</head>
+<body>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs' 
+  </script>  
+
+  <!-- Initialize Mermaid -->
+  <script>
+    // Use the 'mermaid' global object to initialize the diagram
+    mermaid.initialize({
+      startOnLoad: true,
+      sequence: { showSequenceNumbers: true },
+    });
+</script>
+
+<section>
+
+<h1 style="text-align: center;">SkySights ERM</h1>
+
+
+
+<!-- 
+Sample taken from DatabaseAnswers.org 
+https://datamodels.databases.biz
+-->
+ 
+ <div class="mermaid" style="text-align: center">
+
+
+erDiagram
+   
+	EMPLOYEES {
+	int EMP_CODE PK
+	string EMP_FNAME
+	string EMP_LNAME
+	string EMP_DOB
+	date EMP_START_DATE
+	int EMP_PHONE
+	string EMP_ADDRESS
+    }
+	
+	CHARTER_TRIPS {
+	int CHA_NUM PK
+	int CUS_ACC_NUM FK
+	int PLANE_NUM FK
+	datetime CHA_START
+	datetime CHA_END
+	datetime CHA_WAIT
+	string CHA_DEST
+	string CHA_PILOT
+	int CHA_CREW_TOT
+	int CHA_DISTANCE
+	int CHA_FUEL_CONS
+    }
+	
+	CUSTOMERS {
+	int CUS_ACC_NUM PK
+	string CUS_FNAME
+	string CUS_LNAME
+	money CUS_ACC_CHARGE 
+	money CUS_ACC_LIMIT
+	}
+
+	TESTS {
+	int TEST_CODE PK
+	string TEST_DESC
+	string TEST_FREQ
+	}
+
+	TEST_RESULTS {
+	int EMP_CODE PK,FK
+	int TEST_CODE PK,FK
+	int TEST_PASS_NUM
+	date TEST_LAST
+	date TEST_NEXT
+	}
+
+	CERT {
+	int CERT_CODE PK
+	string CERT_DESC
+	}
+
+	CERT_EARNED {
+	int EMP_CODE PK,FK
+	int CERT_CODE PK,FK
+	date DATE_EARNED
+	}
+
+	CREW {
+	int EMP_CODE PK,FK
+	int CHA_NUM PK,FK
+	string CREW_ASSIGNMENT
+	money CREW_EXP
+	}
+
+	PLANE {
+	int PLANE_NUM PK
+	string PLANE_TYPE
+	money PLANE_RATE
+	money PLANE_WAIT
+	money PLANE_COST
+	}
+
+	MONTHLY_REPORT {
+	int REPORT_NUM PK
+	int CHA_NUM FK
+	date REPORT_DATE
+	money CHA_EXP_TOTAL
+	money CHA_REV_TOTAL
+	}
+
+	BILL {
+	int CHA_NUM PK,FK
+	int CUS_ACC_NUM FK
+	money BILL_PLANE
+	money BILL_WAIT_TIME
+	money BILL_DISTANCE
+	money BILL_SPECIAL
+	money BILL_CREW_EXP
+	money BILL_TOTAL
+	money BILL_PAID
+	money BILL_CHARGE_ACC
+	}
+    
+EMPLOYEES ||--o{ TEST_RESULTS : ""
+EMPLOYEES ||--o{ CREW : ""
+EMPLOYEES ||--o{ CERT_EARNED : ""
+CERT_EARNED }o--|| CERT : ""
+CREW }|--|| CHARTER_TRIPS : ""
+CHARTER_TRIPS }o--|| MONTHLY_REPORT : ""
+CHARTER_TRIPS }o--|| PLANE : ""
+CHARTER_TRIPS }o--|| CUSTOMERS : ""
+CHARTER_TRIPS ||--|| BILL : ""
+CUSTOMERS ||--o{ BILL : ""
+CHARTER_TRIPS }o--|| CUSTOMERS : ""
+TESTS ||--o{ TEST_RESULTS : ""
+</div>
+ 
+<br>
+
+
+
+ <div class="mermaid" style="text-align: center">
+sequenceDiagram
+    
+
+
+</div>
+
+
+  
+</section>
+
+</body>
+</html>
