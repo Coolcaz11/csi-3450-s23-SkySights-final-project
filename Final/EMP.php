@@ -66,3 +66,38 @@ scale = 1.0">
 </body>
 
 </html>
+
+<?php
+$server = "localhost";
+$user = "root";
+$pw = "";
+$db = "final";
+
+
+$con = mysqli_connect($server, $user, $pw, $db);
+if (mysqli_connect_errno()){
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	exit;
+}
+$result = mysqli_query($con,"SELECT * FROM `employees` WHERE EMP_FNAME='$_GET[emp]'
+ OR EMP_LNAME='$_GET[emp]';");
+if($result)
+{
+while ($row = mysqli_fetch_array($result))
+{
+echo $row['EMP_FNAME'] . "   " . $row['EMP_LNAME'] .
+ "<br>Date of birth:" . $row['EMP_DOB'] . "<br>Phone number:" . $row['EMP_PHONE'];
+echo "<br>";
+}
+}
+else
+{
+echo "Error";
+
+}
+
+
+
+mysqli_close($con);
+
+?>
